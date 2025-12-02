@@ -31,7 +31,7 @@
 
   const numberFormatter = new Intl.NumberFormat("ru-RU", {
     style: "currency",
-    currency: "RUB",
+    currency: "KZT",
     maximumFractionDigits: 0,
   });
 
