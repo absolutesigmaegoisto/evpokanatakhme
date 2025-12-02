@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокат 2026 · Каталог</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="catalog">
+    <div class="app-shell">
+      <nav class="nav-bar">
+        <a class="brand" href="index.html">Прокат·2026</a>
+        <div class="nav-links">
+          <a class="nav-link" href="index.html">Панель</a>
+          <a class="nav-link" href="add.html">Добавление</a>
+          <a class="nav-link" href="operations.html">Выдача / Возврат</a>
+          <a class="nav-link active" href="catalog.html">Каталог</a>
+        </div>
+      </nav>
+
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Каталог</p>
+          <h1>Поиск и управление</h1>
+          <p>Фильтры по статусу/состоянию, мгновенный поиск, кнопки действий в каждой строке.</p>
+        </div>
+        <div class="hero-card">
+          <p>В наличии</p>
+          <h3 data-stat="available">0</h3>
+          <small>Можно выдавать прямо сейчас</small>
+        </div>
+      </header>
+
+      <section class="card filter-card">
+        <div class="card-head">
+          <h2>Фильтры</h2>
+          <p>Комбинируй по необходимости</p>
+        </div>
+        <div class="filters">
+          <label>
+            Поиск
+            <input type="search" id="search-input" placeholder="ID, название или комментарий" />
+          </label>
+          <label>
+            Статус
+            <select id="status-filter">
+              <option value="all">Все</option>
+              <option value="available">В наличии</option>
+              <option value="issued">Выдано</option>
+              <option value="service">На обслуживании</option>
+            </select>
+          </label>
+          <label>
+            Состояние
+            <select id="condition-filter">
+              <option value="all">Любое</option>
+              <option value="отличное">Отличное</option>
+              <option value="хорошее">Хорошее</option>
+              <option value="удовлетворительное">Удовлетворительное</option>
+              <option value="требует ремонта">Требует ремонта</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="card table-card">
+        <div class="card-head">
+          <h2>Список оборудования</h2>
+          <p>Действия доступны прямо в таблице</p>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Наименование</th>
+                <th>Стоимость</th>
+                <th>Статус</th>
+                <th>Состояние</th>
+                <th>Комментарий</th>
+                <th>Обновлено</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="equipment-body"></tbody>
+          </table>
+        </div>
+        <p id="empty-state" class="empty-state">Пока ничего не найдено</p>
+      </section>
+
+      <footer>
+        <small>Прокат·2026 · каталог оборудования.</small>
+      </footer>
+    </div>
+
+    <div id="issue-modal" class="modal-backdrop hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Выдать оборудование</h3>
+          <button type="button" class="btn chip ghost modal-close" data-close="issue-modal">
+            ✕
+          </button>
+        </div>
+        <p class="modal-subtitle">
+          Укажи, кому выдаём позицию <strong id="issue-eq-id">—</strong>. Основные поля можно оставить пустыми,
+          если не обязательны по внутренним правилам.
+        </p>
+        <form id="issue-person-form" class="stacked-form">
+          <label>
+            ID человека
+            <input type="text" name="personId" placeholder="CL-001" autocomplete="off" />
+          </label>
+          <label>
+            E‑mail
+            <input type="email" name="email" placeholder="user@example.com" autocomplete="off" />
+          </label>
+          <label>
+            ИИН
+            <input type="text" name="iin" placeholder="ИИН / паспорт" autocomplete="off" />
+          </label>
+          <label>
+            Телефон
+            <input type="tel" name="phone" placeholder="+7 ..." autocomplete="off" />
+          </label>
+          <label>
+            Сумма залога (₸)
+            <input type="number" name="deposit" min="0" step="100" placeholder="10000" />
+          </label>
+          <label>
+            Комментарий
+            <input type="text" name="note" placeholder="Для какого проекта / отдела" />
+          </label>
+          <button type="submit" class="btn accent full-width">Подтвердить выдачу</button>
+        </form>
+      </div>
+    </div>
+
+    <template id="row-template">
+      <tr>
+        <td data-field="id"></td>
+        <td data-field="name"></td>
+        <td data-field="price"></td>
+        <td data-field="status"></td>
+        <td data-field="condition"></td>
+        <td data-field="note"></td>
+        <td data-field="updated"></td>
+        <td class="actions">
+          <button data-action="issue" class="btn chip warning">Выдать</button>
+          <button data-action="return" class="btn chip success">Принять</button>
+          <button data-action="remove" class="btn chip danger">Удалить</button>
+        </td>
+      </tr>
+    </template>
+
+    <script src="core.js"></script>
+    <script src="catalog.js"></script>
+  </body>
+</html>
+

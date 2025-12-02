@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокат 2026 · Добавление оборудования</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="add">
+    <div class="app-shell">
+      <nav class="nav-bar">
+        <a class="brand" href="index.html">Прокат·2026</a>
+        <div class="nav-links">
+          <a class="nav-link" href="index.html">Панель</a>
+          <a class="nav-link active" href="add.html">Добавление</a>
+          <a class="nav-link" href="operations.html">Выдача / Возврат</a>
+          <a class="nav-link" href="catalog.html">Каталог</a>
+        </div>
+      </nav>
+
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Новый инвентарь</p>
+          <h1>Добавление оборудования</h1>
+          <p>Формируем карточку, задаём стоимость и состояние. Всё сохраняется локально.</p>
+        </div>
+        <div class="hero-card">
+          <p>Быстрые действия</p>
+          <div class="hero-card-actions">
+            <button type="button" class="btn ghost" id="seed-demo">➕ Подхватить демо-набор</button>
+            <button type="button" class="btn ghost" id="reset-data">♻ Очистить и перезагрузить</button>
+          </div>
+        </div>
+      </header>
+
+      <section class="card form-card">
+        <div class="card-head">
+          <h2>Карточка оборудования</h2>
+          <p>Поля обязательны — ID должен быть уникальным.</p>
+        </div>
+        <form id="add-form" class="form-grid">
+          <label>
+            ID
+            <input type="text" name="id" placeholder="EQ-021" autocomplete="off" required />
+          </label>
+          <label>
+            Наименование
+            <input type="text" name="name" placeholder="Дрон видеосъёмки" autocomplete="off" required />
+          </label>
+          <label>
+            Стоимость (₸)
+            <input type="number" name="price" min="0" step="100" placeholder="50000" required />
+          </label>
+          <label>
+            Состояние
+            <select name="condition">
+              <option value="отличное">Отличное</option>
+              <option value="хорошее">Хорошее</option>
+              <option value="удовлетворительное">Удовлетворительное</option>
+              <option value="требует ремонта">Требует ремонта</option>
+            </select>
+          </label>
+          <label class="full-width checkbox">
+            <input type="checkbox" name="inService" checked />
+            Сразу доступно для выдачи
+          </label>
+          <button type="submit" class="btn primary full-width">Сохранить</button>
+        </form>
+        <p id="add-feedback" class="feedback" role="status"></p>
+      </section>
+
+      <section class="card tips-card">
+        <div class="card-head">
+          <h2>Подсказки</h2>
+          <p>Чтобы ускорить работу команды</p>
+        </div>
+        <ul class="tips-list">
+          <li>Используй короткие ID — EQ-xxx или любой понятный формат.</li>
+          <li>Стоимость сохраняется в тенге, можно задавать любые значения.</li>
+          <li>Отметь чекбокс, если техника готова к выдаче сразу после создания.</li>
+        </ul>
+      </section>
+
+      <footer>
+        <small>Прокат·2026 · добавление оборудования.</small>
+      </footer>
+    </div>
+
+    <script src="core.js"></script>
+    <script src="add.js"></script>
+  </body>
+</html>
+

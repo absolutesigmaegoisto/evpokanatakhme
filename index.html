@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокат 2026 · Главная панель</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="dashboard">
+    <div class="app-shell">
+      <nav class="nav-bar">
+        <a class="brand" href="index.html">Прокат·2026</a>
+        <div class="nav-links">
+          <a class="nav-link active" href="index.html">Панель</a>
+          <a class="nav-link" href="add.html">Добавление</a>
+          <a class="nav-link" href="operations.html">Выдача / Возврат</a>
+          <a class="nav-link" href="catalog.html">Каталог</a>
+        </div>
+      </nav>
+
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Digital Rental Command</p>
+          <h1>Оперативный контроль парка</h1>
+          <p>
+            Центр наблюдения за техникой: показатели, журнал и быстрые переходы в ключевые разделы.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="add.html">Добавить оборудование</a>
+            <button type="button" class="btn ghost" id="reset-data">Сбросить демо-данные</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <p>Текущий объём</p>
+          <h3 id="hero-total">0 ед.</h3>
+          <small>LocalStorage синхронизирован</small>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card">
+          <span class="label">Всего</span>
+          <span class="value" data-stat="total">0</span>
+          <span class="hint">Единиц техники</span>
+        </article>
+        <article class="stat-card">
+          <span class="label">В наличии</span>
+          <span class="value" data-stat="available">0</span>
+          <span class="hint">Готовы к выдаче</span>
+        </article>
+        <article class="stat-card">
+          <span class="label">Выданы</span>
+          <span class="value" data-stat="issued">0</span>
+          <span class="hint">Сейчас в работе</span>
+        </article>
+        <article class="stat-card">
+          <span class="label">Обслуживание</span>
+          <span class="value" data-stat="service">0</span>
+          <span class="hint">Нужна проверка</span>
+        </article>
+        <article class="stat-card wide">
+          <span class="label">Инвентарная стоимость</span>
+          <span class="value" data-stat="cost">0 ₸</span>
+          <span class="hint">оценка всего парка</span>
+        </article>
+      </section>
+
+      <section class="quick-grid">
+        <article class="card quick-card">
+          <p class="eyebrow">01 · Добавление</p>
+          <h2>Каталог пополняем здесь</h2>
+          <p>Фиксация стоимости, статуса и состояния со smart-валидацией.</p>
+          <a class="btn primary" href="add.html">Перейти к форме</a>
+        </article>
+        <article class="card quick-card">
+          <p class="eyebrow">02 · Выдача / Возврат</p>
+          <h2>Операции по ID</h2>
+          <p>На отдельных формах — комментарии, состояние и мгновенный журнал.</p>
+          <a class="btn accent" href="operations.html">Открыть операции</a>
+        </article>
+        <article class="card quick-card">
+          <p class="eyebrow">03 · Каталог</p>
+          <h2>Фильтры, список, действия</h2>
+          <p>Поиск, сортировка по статусу и мгновенные кнопки по каждой позиции.</p>
+          <a class="btn ghost" href="catalog.html">Просмотр списка</a>
+        </article>
+      </section>
+
+      <section class="content-grid single">
+        <article class="card history-card">
+          <div class="card-head">
+            <h2>Журнал операций</h2>
+            <p>Всё, что произошло, за последние события</p>
+          </div>
+          <ol id="history-list" class="history-list"></ol>
+          <p id="history-empty" class="empty-state">История ещё не формировалась</p>
+        </article>
+      </section>
+
+      <footer>
+        <small>Прокат·2026 · данные сохраняются локально.</small>
+      </footer>
+    </div>
+
+    <template id="history-template">
+      <li>
+        <div class="history-icon" data-field="icon">∙</div>
+        <div>
+          <p data-field="title"></p>
+          <small data-field="time"></small>
+        </div>
+      </li>
+    </template>
+
+    <script src="core.js"></script>
+    <script src="dashboard.js"></script>
+  </body>
+</html>
+

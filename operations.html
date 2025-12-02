@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокат 2026 · Выдача и возврат</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="operations">
+    <div class="app-shell">
+      <nav class="nav-bar">
+        <a class="brand" href="index.html">Прокат·2026</a>
+        <div class="nav-links">
+          <a class="nav-link" href="index.html">Панель</a>
+          <a class="nav-link" href="add.html">Добавление</a>
+          <a class="nav-link active" href="operations.html">Выдача / Возврат</a>
+          <a class="nav-link" href="catalog.html">Каталог</a>
+        </div>
+      </nav>
+
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Операции</p>
+          <h1>Выдача и возврат</h1>
+          <p>По ID, с комментариями и изменением состояния. Всё логируется в истории.</p>
+        </div>
+        <div class="hero-card">
+          <p>Последний статус</p>
+          <h3 id="hero-total">0 ед.</h3>
+          <small>Следи за балансом выдачи / возврата</small>
+        </div>
+      </header>
+
+      <section class="layout-grid">
+        <article class="card action-card">
+          <div class="card-head">
+            <h2>Выдать оборудование</h2>
+            <p>ID из каталога + данные человека, которому выдаём</p>
+          </div>
+          <form id="issue-form" class="stacked-form">
+            <label>
+              ID
+              <input type="text" name="id" placeholder="EQ-001" autocomplete="off" required />
+            </label>
+            <label>
+              ID человека
+              <input type="text" name="personId" placeholder="CL-001" autocomplete="off" />
+            </label>
+            <label>
+              E‑mail
+              <input type="email" name="email" placeholder="user@example.com" autocomplete="off" />
+            </label>
+            <label>
+              ИИН
+              <input type="text" name="iin" placeholder="ИИН / паспорт" autocomplete="off" />
+            </label>
+            <label>
+              Телефон
+              <input type="tel" name="phone" placeholder="+7 ..." autocomplete="off" />
+            </label>
+            <label>
+              Сумма залога (₸)
+              <input type="number" name="deposit" min="0" step="100" placeholder="10000" />
+            </label>
+            <label>
+              Комментарий
+              <input type="text" name="note" placeholder="Для проекта Orion" />
+            </label>
+            <button type="submit" class="btn accent full-width">Выдать</button>
+            <p class="feedback"></p>
+          </form>
+        </article>
+
+        <article class="card action-card">
+          <div class="card-head">
+            <h2>Принять возврат</h2>
+            <p>Укажи состояние и комментарий по итогу</p>
+          </div>
+          <form id="return-form" class="stacked-form">
+            <label>
+              ID
+              <input type="text" name="id" placeholder="EQ-001" autocomplete="off" required />
+            </label>
+            <label>
+              Состояние после возврата
+              <select name="condition">
+                <option value="отличное">Отличное</option>
+                <option value="хорошее">Хорошее</option>
+                <option value="удовлетворительное">Удовлетворительное</option>
+                <option value="требует ремонта">Требует ремонта</option>
+              </select>
+            </label>
+            <label>
+              Комментарий
+              <input type="text" name="note" placeholder="Нужно почистить" />
+            </label>
+            <button type="submit" class="btn success full-width">Принять</button>
+            <p class="feedback"></p>
+          </form>
+        </article>
+      </section>
+
+      <section class="card history-card">
+        <div class="card-head">
+          <h2>Журнал</h2>
+          <p>Свежие операции отображаются мгновенно</p>
+        </div>
+        <ol id="history-list" class="history-list"></ol>
+        <p id="history-empty" class="empty-state">История ещё не формировалась</p>
+      </section>
+
+      <footer>
+        <small>Прокат·2026 · выдача / возврат.</small>
+      </footer>
+    </div>
+
+    <template id="history-template">
+      <li>
+        <div class="history-icon" data-field="icon">∙</div>
+        <div>
+          <p data-field="title"></p>
+          <small data-field="time"></small>
+        </div>
+      </li>
+    </template>
+
+    <script src="core.js"></script>
+    <script src="operations.js"></script>
+  </body>
+</html>
+
